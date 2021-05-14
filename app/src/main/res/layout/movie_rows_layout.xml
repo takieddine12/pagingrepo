@@ -1,0 +1,40 @@
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="model"
+            type="com.example.moviesapppaginglibrary3.models.Result" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="170dp"
+        app:cardElevation="10dp"
+        app:cardCornerRadius="12dp"
+        android:layout_margin="5dp">
+
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                img="@{model.poster_path}"
+                android:scaleType="centerCrop"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@{model.title}"
+                android:maxLines="1"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:textColor="@color/black"
+                android:gravity="center"/>
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>
