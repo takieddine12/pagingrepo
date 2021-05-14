@@ -11,7 +11,7 @@ import com.example.moviesapppaginglibrary3.models.RemoteKeys
 import com.example.moviesapppaginglibrary3.models.Result
 import java.lang.Exception
 
-private const val MOVIES_API_STARTING_PAGE_INDEX = 1
+private  var MOVIES_API_STARTING_PAGE_INDEX = 1
 
 @ExperimentalPagingApi
 class MoviesMediator(
@@ -41,7 +41,7 @@ class MoviesMediator(
         }
 
         try {
-            val response = authResponse.getMovies(Constants.API_KEY, Constants.LANGUAGE, MOVIES_API_STARTING_PAGE_INDEX).results
+            val response = authResponse.getMovies(Constants.API_KEY, Constants.LANGUAGE, page).results
 
             val endOfPagination = response.isEmpty()
             movieDatabase.withTransaction {
