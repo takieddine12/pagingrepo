@@ -1,5 +1,6 @@
 package com.example.moviesapppaginglibrary3.mvvm
 
+import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.*
@@ -11,6 +12,7 @@ import com.example.moviesapppaginglibrary3.models.MoviesDataModel
 import com.example.moviesapppaginglibrary3.models.Result
 import com.example.moviesapppaginglibrary3.paging.MoviePagingSource
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
 import java.util.concurrent.Flow
 import javax.inject.Inject
 
@@ -22,8 +24,6 @@ class MoviesModel @Inject constructor(
 ) : ViewModel() {
 
 
-
-
     val dataFlow : kotlinx.coroutines.flow.Flow<PagingData<Result>> =
         Pager(getPagingConfig(),
         remoteMediator = MoviesMediator(authResponse,movieDatabase)){
@@ -33,7 +33,7 @@ class MoviesModel @Inject constructor(
 
 
     // get config
-    fun getPagingConfig() : PagingConfig {
+    private fun getPagingConfig() : PagingConfig {
         return PagingConfig(pageSize = 1)
     }
 

@@ -49,4 +49,6 @@ object AppModule {
     @Singleton
     @Provides
     fun provideDB(movieDatabase: MovieDatabase) = movieDatabase.MovieDao()
+
+
 }

@@ -8,8 +8,9 @@ import org.jetbrains.annotations.NotNull
 
 @Entity(tableName = "movieTable")
 data class Result(
-    @PrimaryKey(autoGenerate = false)
+    @PrimaryKey(autoGenerate = true)
     @NotNull
+    val movieID : Long ,
     val id: Int,
     val adult: Boolean,
     val backdrop_path: String,

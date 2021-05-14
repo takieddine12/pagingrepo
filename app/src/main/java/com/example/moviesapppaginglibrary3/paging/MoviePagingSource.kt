@@ -1,6 +1,7 @@
 package com.example.moviesapppaginglibrary3.paging
 
 import android.annotation.SuppressLint
+import android.content.Context
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
@@ -29,7 +30,7 @@ class MoviePagingSource(
         return try {
             val nextPageKey = params.key ?: 1
             val response  = authResponse.getMovies(Constants.API_KEY,Constants.LANGUAGE,nextPageKey)
-            Timber.d("TAG","Current Key is $nextPageKey")
+            Timber.d("Current Key is $nextPageKey")
             LoadResult.Page(
                 data = response.results,
                 prevKey = if(nextPageKey == 1) null else nextPageKey - 1,
@@ -40,4 +41,6 @@ class MoviePagingSource(
             LoadResult.Error(ex)
         }
     }
+
+
 }
