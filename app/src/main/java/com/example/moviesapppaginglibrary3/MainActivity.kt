@@ -12,10 +12,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.moviesapppaginglibrary3.adapters.LoadingStateAdapter
 import com.example.moviesapppaginglibrary3.adapters.MoviesAdapter
 import com.example.moviesapppaginglibrary3.databinding.ActivityMainBinding
-import com.example.moviesapppaginglibrary3.mvvm.MoviesModel
+import com.example.moviesapppaginglibrary3.mvvm.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
+
 
 @ExperimentalPagingApi
 @AndroidEntryPoint
@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var moviesAdapter: MoviesAdapter
     private var _binding : ActivityMainBinding? = null
     private val binding get() = _binding!!
-    private  val moviesModel: MoviesModel by viewModels()
+    private  val moviesModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,8 +53,8 @@ class MainActivity : AppCompatActivity() {
 
         binding.recycler.adapter = moviesAdapter
         binding.recycler.adapter =  moviesAdapter.withLoadStateHeaderAndFooter(
-            header = LoadingStateAdapter { moviesAdapter.retry() },
-            footer = LoadingStateAdapter { moviesAdapter.retry() }
+                header = LoadingStateAdapter { moviesAdapter.retry() },
+                footer = LoadingStateAdapter { moviesAdapter.retry() }
         )
     }
     @ExperimentalPagingApi
@@ -68,8 +68,8 @@ class MainActivity : AppCompatActivity() {
 
         binding.recycler.adapter = moviesAdapter
         binding.recycler.adapter =  moviesAdapter.withLoadStateHeaderAndFooter(
-            header = LoadingStateAdapter { moviesAdapter.retry() },
-            footer = LoadingStateAdapter { moviesAdapter.retry() }
+                header = LoadingStateAdapter { moviesAdapter.retry() },
+                footer = LoadingStateAdapter { moviesAdapter.retry() }
         )
     }
 

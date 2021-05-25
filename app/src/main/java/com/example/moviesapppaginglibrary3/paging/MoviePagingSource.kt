@@ -1,23 +1,18 @@
 package com.example.moviesapppaginglibrary3.paging
 
 import android.annotation.SuppressLint
-import android.content.Context
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.moviesapppaginglibrary3.Constants
 import com.example.moviesapppaginglibrary3.auth.AuthResponse
-import com.example.moviesapppaginglibrary3.models.MoviesDataModel
 import com.example.moviesapppaginglibrary3.models.Result
-import com.example.moviesapppaginglibrary3.mvvm.MoviesModel
 import timber.log.Timber
 import java.lang.Exception
 
 class MoviePagingSource(
     var authResponse: AuthResponse
 ) : PagingSource<Int, Result>() {
-
-
 
 
     @ExperimentalPagingApi
@@ -30,7 +25,7 @@ class MoviePagingSource(
         return try {
             val nextPageKey = params.key ?: 1
             val response  = authResponse.getMovies(Constants.API_KEY,Constants.LANGUAGE,nextPageKey)
-            Timber.d("Current Key is $nextPageKey")
+
             LoadResult.Page(
                 data = response.results,
                 prevKey = if(nextPageKey == 1) null else nextPageKey - 1,

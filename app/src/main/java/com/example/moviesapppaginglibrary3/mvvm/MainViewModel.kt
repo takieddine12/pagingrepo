@@ -18,7 +18,7 @@ import javax.inject.Inject
 
 @ExperimentalPagingApi
 @HiltViewModel
-class MoviesModel @Inject constructor(
+class MainViewModel @Inject constructor(
     private  var authResponse: AuthResponse,
     private var movieDatabase: MovieDatabase
 ) : ViewModel() {
@@ -34,15 +34,16 @@ class MoviesModel @Inject constructor(
 
     // get config
     private fun getPagingConfig() : PagingConfig {
-        return PagingConfig(pageSize = 1)
+        return PagingConfig(pageSize = 10)
     }
 
-    //
+
+
     suspend fun offlineDataFlow() : kotlinx.coroutines.flow.Flow<PagingData<Result>> {
         return  Pager(getPagingConfig()){
             movieDatabase.MovieDao().getMovies()
         }.flow
-            .cachedIn(viewModelScope)
+                .cachedIn(viewModelScope)
     }
 
 }

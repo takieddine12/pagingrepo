@@ -10,7 +10,7 @@ import org.jetbrains.annotations.NotNull
 data class Result(
     @PrimaryKey(autoGenerate = true)
     @NotNull
-    val movieID : Long ,
+    val resultID : Long ,
     val id: Int,
     val adult: Boolean,
     val backdrop_path: String,
