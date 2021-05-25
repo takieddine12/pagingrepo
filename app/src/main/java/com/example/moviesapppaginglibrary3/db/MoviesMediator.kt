@@ -78,7 +78,7 @@ class MoviesMediator(
     private suspend fun getRemoteKeyForFirstItem(state: PagingState<Int, Result>): RemoteKeys? {
         return state.pages.firstOrNull() { it.data.isNotEmpty() }?.data?.firstOrNull()
             ?.let { movieId ->
-                movieDatabase.remoteKeysDao().remoteKeysRepoId(movieId.resultID)
+                movieDatabase.remoteKeysDao().remoteKeysMovieId(movieId.resultID)
             }
     }
     private suspend fun getRemoteKeyClosestToCurrentPosition(state: PagingState<Int, Result>): RemoteKeys? {
@@ -86,7 +86,7 @@ class MoviesMediator(
         // Get the item closest to the anchor position
         return state.anchorPosition?.let { position ->
             state.closestItemToPosition(position)?.resultID?.let { movieId ->
-                movieDatabase.remoteKeysDao().remoteKeysRepoId(movieId = movieId)
+                movieDatabase.remoteKeysDao().remoteKeysMovieId(movieId = movieId)
             }
         }
     }
@@ -97,7 +97,7 @@ class MoviesMediator(
         return state.pages.lastOrNull() { it.data.isNotEmpty() }?.data?.lastOrNull()
                 ?.let { repo ->
                     // Get the remote keys of the last item retrieved
-                    movieDatabase.remoteKeysDao().remoteKeysRepoId(movieId = repo.resultID)
+                    movieDatabase.remoteKeysDao().remoteKeysMovieId(movieId = repo.resultID)
                 }
     }
 
